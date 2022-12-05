@@ -1,7 +1,7 @@
 import React from 'react';
 import crypto from 'crypto';
 
-function copyToClipboard(password, setPassword, textAnimation, setTextAnimation) {
+function copyToClipboard(password: any, setPassword: any, textAnimation: any, setTextAnimation: any) {
   navigator.clipboard.writeText(password);
   setPassword('');
   setTextAnimation('Copied to clipboard');
