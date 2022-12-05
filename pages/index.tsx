@@ -1,7 +1,8 @@
 import React from 'react';
 import crypto from 'crypto';
+import { Analytics } from '@vercel/analytics/react';
 
-function copyToClipboard(password: any, setPassword: any, textAnimation: any, setTextAnimation: any) {
+function copyToClipboard(password: string, setPassword: { (value: React.SetStateAction<string>): void; (arg0: string): void; }, textAnimation: string, setTextAnimation: { (value: React.SetStateAction<string>): void; (arg0: string): void; }) {
   navigator.clipboard.writeText(password);
   setPassword('');
   setTextAnimation('Copied to clipboard');
@@ -25,7 +26,7 @@ function SecurePasswordGenerator(): JSX.Element {
 
     // Select firstPart, secondPart, or thirdPart randomly
     const selectedPart1 = Math.floor(Math.random() * 3);
-    
+
     // Random index for firstPart
     const firstPartIndex = Math.floor(Math.random() * firstPart.length);
 
@@ -43,7 +44,7 @@ function SecurePasswordGenerator(): JSX.Element {
 
     // Upper case letter based on thirdPartIndex
     const upperCase3 = thirdPart[thirdPartIndex].toUpperCase();
-    
+
     // Bucket for the first modified password
     let modifiedPart1 = '';
 
@@ -51,27 +52,27 @@ function SecurePasswordGenerator(): JSX.Element {
     switch (selectedPart1) {
       case 0:
         // Code to be executed if selectedPart1 has a value of 0
-        modifiedPart1 = 
-          firstPart.substring(0, firstPartIndex) + 
-          upperCase1 + 
+        modifiedPart1 =
+          firstPart.substring(0, firstPartIndex) +
+          upperCase1 +
           firstPart.substring(firstPartIndex + 1);
-          //console.log(modifiedPart1);
+        //console.log(modifiedPart1);
         break;
       case 1:
         // Code to be executed if selectedPart1 has a value of 1
-        modifiedPart1 = 
-          secondPart.substring(0, secondPartIndex) + 
-          upperCase2 + 
+        modifiedPart1 =
+          secondPart.substring(0, secondPartIndex) +
+          upperCase2 +
           secondPart.substring(secondPartIndex + 1);
-          //console.log(modifiedPart1);
+        //console.log(modifiedPart1);
         break;
       case 2:
         // Code to be executed if selectedPart1 has a value of 2
-          modifiedPart1 = 
-          thirdPart.substring(0, thirdPartIndex) + 
-          upperCase3 + 
+        modifiedPart1 =
+          thirdPart.substring(0, thirdPartIndex) +
+          upperCase3 +
           thirdPart.substring(thirdPartIndex + 1);
-          //console.log(modifiedPart1);
+        //console.log(modifiedPart1);
         break;
       default:
         // Code to be executed if selectedPart1 has a value other than 0, 1, or 2
@@ -88,28 +89,28 @@ function SecurePasswordGenerator(): JSX.Element {
 
     // Bucket for the second modified password
     let modifiedPart2 = '';
-    
+
     switch (selectedPart2) {
       case 0:
-        modifiedPart2 = 
-          firstPart.substring(0, firstPartIndex) + 
-          firstPartIndex + 
+        modifiedPart2 =
+          firstPart.substring(0, firstPartIndex) +
+          firstPartIndex +
           firstPart.substring(firstPartIndex + 1);
-          //console.log(modifiedPart2);
-      break;
+        //console.log(modifiedPart2);
+        break;
       case 1:
-        modifiedPart2 = 
-          secondPart.substring(0, secondPartIndex) + 
-          secondPartIndex + 
+        modifiedPart2 =
+          secondPart.substring(0, secondPartIndex) +
+          secondPartIndex +
           secondPart.substring(secondPartIndex + 1);
-          //console.log(modifiedPart2);
+        //console.log(modifiedPart2);
         break;
       case 2:
-        modifiedPart2 = 
-          thirdPart.substring(0, thirdPartIndex) + 
-          thirdPartIndex + 
+        modifiedPart2 =
+          thirdPart.substring(0, thirdPartIndex) +
+          thirdPartIndex +
           thirdPart.substring(thirdPartIndex + 1);
-          //console.log(modifiedPart2);
+        //console.log(modifiedPart2);
         break;
       default:
         break;
@@ -142,6 +143,7 @@ function SecurePasswordGenerator(): JSX.Element {
           {textAnimation}
         </p>
       )}
+      <Analytics />
     </div>
   );
 }
